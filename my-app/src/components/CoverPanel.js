@@ -3,43 +3,43 @@
  */
 import React from 'react';
 import PictureSlider from './PictureSlider';
-import MyButton from './MyButton';
-export default class CoverPanel extends React.Component {
-    constructor(props) {
-        super(props);
-        this.pictureContainer = {
-            pictureList: []
-        }
-    }
-
-    render() {
-        let pictureListConst = this.pictureContainer.pictureList.slice(); //in order to keep state no
-        if (pictureListConst.length === 0) {
-            pictureListConst.push(<MyPicture
-                imgLink="https://cdn.pixabay.com/photo/2014/03/29/09/17/cat-300572_960_720.jpg"/>);
-            pictureListConst.push(<MyPicture
-                imgLink="https://static.pexels.com/photos/104827/cat-pet-animal-domestic-104827.jpeg"/>);
-            pictureListConst.push(<MyPicture
-                imgLink="https://zellox.com/wp-content/uploads/2016/04/grumpy-cat-680x425.jpg"/>);
-            pictureListConst.push(<MyPicture
-                imgLink="https://cdn.pixabay.com/photo/2014/09/18/20/17/cat-451377_960_720.jpg"/>);
-        }
-        return (
-            <div className={"cover-panel"}>
-                <MyButton buttonAction="prev"/>
-                <PictureSlider>
-                    {pictureListConst}
-                </PictureSlider>
-                <MyButton buttonAction="next"/>
-            </div>
-        );
-    }
-}
 
 function MyPicture(props) {
     return (
         <div className="sliding-picture">
-            <img href={props.imgLink}/>
+            <img src={props.imgLink} alt={props.imgLink}/>
         </div>
     );
+}
+
+export default class CoverPanel extends React.Component {
+    constructor(props) {
+        super(props);
+        this.pics = {
+            firstCat: "fill here later",
+            secondCat: "fill here later",
+            thirdCat: "fill here later "
+        };
+        this.pictureContainer = {
+            pictureList: [
+                <MyPicture key="firstCat" imgLink={this.pics.firstCat}/>,
+                <MyPicture key="secondCat" imgLink={this.pics.secondCat}/>,
+                <MyPicture key="thirdCat" imgLink={this.pics.thirdCat}/>
+            ]
+        }
+    }
+
+    render() {
+        let pictureListConst = this.pictureContainer.pictureList.slice(); //in order to keep data non-mutated
+        if (pictureListConst.length === 0) {
+            return null;
+        }
+        return (
+            <div className={"cover-panel"}>
+                <PictureSlider>
+                    {pictureListConst}
+                </PictureSlider>
+            </div>
+        );
+    }
 }
