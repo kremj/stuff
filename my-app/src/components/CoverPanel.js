@@ -20,7 +20,7 @@ export default class CoverPanel extends React.Component {
             secondCat: "fill here later",
             thirdCat: "fill here later "
         };
-        this.pictureContainer = {
+        this.pictureContainer = { //todo: replace here with arrays.map();
             pictureList: [
                 <MyPicture key="firstCat" imgLink={this.pics.firstCat}/>,
                 <MyPicture key="secondCat" imgLink={this.pics.secondCat}/>,
